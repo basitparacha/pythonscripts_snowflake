@@ -1,16 +1,46 @@
+from typing import AsyncContextManager
 import snowflake.connector
 from codecs import open
+import argparse
 
+User = ''
+Password = ''
+Account = ''
+Warehouse = ''
+Database = ''
+Schema = ''
+parser = argparse.ArgumentParser()
+subparser = parser.add_subparsers(dest='command')
+login = subparser.add_parser('login')
+
+login.add_argument('-u', type=str, required=True)
+login.add_argument('-p', type=str, required=True)
+login.add_argument('-a', type=str, required=True)
+login.add_argument('-w', type=str, required=True)
+login.add_argument('-db', type=str, required=True)
+login.add_argument('-s', type=str, required=True)
+
+args = parser.parse_args()
+
+
+if args.command == 'login':
+    args.u = User
+    args.p = Password
+    args.a = Account
+    args.w = Warehouse
+    args.db = Database,
+    args.s = Schema
+    
 
 print("opening....")
 
 cnn = snowflake.connector.connect(
-    user = 'AbdulBasit',
-    password = 'B1a2s3i4t56',
-    account = 'ak67299.east-us-2.azure',
-    warehouse = 'DEMO_WH',
-    database = 'DEMO_DB',
-    schema = 'DEMO_2'
+    user = User,
+    password = Password,
+    account = Account,
+    warehouse = Warehouse,
+    database = Database,
+    schema = Schema
 
 )
 
