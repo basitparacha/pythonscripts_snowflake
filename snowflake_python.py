@@ -24,13 +24,12 @@ args = parser.parse_args()
 
 
 if args.command == 'login':
-    args.u = User
-    args.p = Password
-    args.a = Account
-    args.w = Warehouse
-    args.db = Database,
-    args.s = Schema
-    
+    User = args.u
+    Password = args.p
+    Account = args.a
+    Warehouse = args.w 
+    Database = args.db
+    Schema = args.s     
 
 print("opening....")
 
